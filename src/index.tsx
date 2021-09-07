@@ -1,17 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "@/page/App";
+import reportWebVitals from "./reportWebVitals";
+import GlobalThemeProvider from "./provider/GlobalThemeProvider";
+import welcome from "@/utils/welcome";
 
+welcome();
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalThemeProvider>
+      <App />
+    </GlobalThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+/**
+ * web-vitals是Google发起的，其中有三个关键指标（CLS、FID、LCP）和两个辅助指标（FCP、TTFB）
+ * 可以传参，观察数据，如下所示
+ */
+reportWebVitals(console.log);
