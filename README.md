@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# 介绍
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+本项目是基于 React-TypeScript 的通用架子。
 
-## Available Scripts
+随着技术的革新和个人能力的提升，作者也会不断总结和改善该项目。✨
 
-In the project directory, you can run:
+# 主要涉及的技术栈
 
-### `yarn start`
+`styled-components`、`axios`、`React-Typescript`、`customize-cra`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 安装依赖
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+`yarn install`
 
-### `yarn test`
+## 启动
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 开发模式：`yarn start`
+- 生产模式：`yarn start:prod`
 
-### `yarn build`
+## 打包
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 开发模式：`yarn build`
+- 生产模式：`yarn build:prod`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Git Hooks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Commit Message Lint
 
-### `yarn eject`
+```
+<emoji type>(<scope>): <subject>
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+type: 用于说明 commit 的类别，主要下面几个标识。
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+| type |      emoji 代码      | 说明                                                        |
+| :--: | :------------------: | :---------------------------------------------------------- |
+|  🎉  |       `:tada:`       | 初次提交                                                    |
+|  🆕  |       `:new:`        | feat：新功能（feature）                                     |
+|  🐛  |       `:bug:`        | fix：修补 bug                                               |
+|  🔧  |      `:wrench:`      | chore：修改配置文件                                         |
+|  💄  |     `:lipstick:`     | style： 格式（不影响代码运行的变动）                        |
+|  📝  |       `:memo:`       | docs：文档（documentation）                                 |
+|  🔨  |      `:hammer:`      | refactor：重构（即不是新增功能，也不是修改 bug 的代码变动） |
+|  ➕  | `:heavy_plus_sign:`  | 增加依赖                                                    |
+|  ➖  | `:heavy_minus_sign:` | 减少                                                        |
+|  🗑️  |   `:wastebasket:`    | 删除                                                        |
+|  🚀  |      `:rocket:`      | 部署功能                                                    |
