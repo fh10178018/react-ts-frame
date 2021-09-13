@@ -1,0 +1,40 @@
+name: NodeJS with Webpack
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        npm install
+        npx webpack
+  
+    - name: Send Notification # 发送邮件
+      uses: dawidd6/action-send-mail@master # 发邮件的插件，打开你小号邮箱的设置界面，开启SMTP服务，记住授权码。
+      with:
+        server_address: smtp.163.com 
+        server_port: 465
+        username: ${{ secrets.MAIL_USERNAME }} # 邮箱小号的登录名
+        password: ${{ secrets.MAIL_PASSWORD }} # 开启服务时的授权码
+        subject: 【】#邮件主题
+        body: 邮件内容
+        to: xxxx@xxx.com # 收件邮箱
+        from: GitHub Actions # 发件人
