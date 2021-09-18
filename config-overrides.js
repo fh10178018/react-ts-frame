@@ -1,20 +1,34 @@
 const {
   override,
   fixBabelImports,
-  addPostcssPlugins,
   addWebpackAlias,
   addWebpackModuleRule,
+  overrideDevServer,
 } = require("customize-cra");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const path = require("path");
 const isProduction = process.env.NODE_ENV === "production";
-const isMobileH5 = false; // 是否是手机H5项目
+
 let useAntd = true;
 try {
   require("antd");
 } catch (ex) {
   useAntd = false;
 }
+
+// proxy代理，开发模式下生效
+const addProxy = () => (config) => {
+  if (!isProduction) {
+    config.proxy = {
+      "/api/": {
+        target: process.env.REACT_APP_HTTP_BASEURL,
+        changeOrigin: true,
+        pathRewrite: { "^/api": "/" },
+      },
+    };
+  }
+  return config;
+};
 
 // 打包配置
 const addCustomize = () => (config) => {
@@ -38,19 +52,6 @@ const addCustomize = () => (config) => {
   config.output.publicPath = "./";
   return config;
 };
-
-// 手机样式适配问题，px自动转为rem
-const addPxToRem = () =>
-  isMobileH5
-    ? addPostcssPlugins([
-        require("postcss-pxtorem")({
-          rootValue: 75,
-          propList: ["*"],
-          minPixelValue: 2, // 最小像素值
-          selectorBlackList: ["am-"], // 选择器的黑名单，am-开头
-        }),
-      ])
-    : undefined;
 
 // font 文件配置
 const addFontFileRules = () =>
@@ -90,19 +91,21 @@ const addAntdImport = () =>
       })
     : undefined;
 
-module.exports = override(
-  addAntdImport(),
-  addImageFileRules(),
-  addFontFileRules(),
-  fixBabelImports("react-use", {
-    libraryName: "react-use",
-    libraryDirectory: "lib",
-    camel2DashComponentName: false,
-  }),
-  addPxToRem(),
-  addCustomize(),
-  addWebpackAlias({
-    //配置路径别名
-    "@": path.resolve(__dirname, "src"),
-  })
-);
+module.exports = {
+  webpack: override(
+    addAntdImport(),
+    addImageFileRules(),
+    addFontFileRules(),
+    fixBabelImports("react-use", {
+      libraryName: "react-use",
+      libraryDirectory: "lib",
+      camel2DashComponentName: false,
+    }),
+    addCustomize(),
+    addWebpackAlias({
+      //配置路径别名
+      "@": path.resolve(__dirname, "src"),
+    })
+  ),
+  devServer: overrideDevServer(addProxy()),
+};
