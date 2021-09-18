@@ -52,8 +52,6 @@
     "customize-cra": "^1.0.0",
     "env-cmd": "^10.1.0",
     "file-loader": "^6.2.0",
-    "http-proxy-middleware": "^2.0.1",
-    "postcss-pxtorem": "^6.0.0",
     "react-app-rewired": "^2.1.8",
     "url-loader": "^4.1.1"
   }
