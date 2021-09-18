@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import logo from "@/image/logo.svg";
 import styled, { keyframes } from "styled-components";
 
@@ -40,6 +40,22 @@ const AppLink = styled.a`
 `;
 
 function App() {
+  const inputRef: React.LegacyRef<HTMLInputElement> = useRef(null);
+
+  const handleClick = useCallback(() => {
+    const curInputRef = inputRef.current;
+    if (curInputRef) {
+      if (curInputRef.value) {
+        const timestamp = new Date().getTime();
+        localStorage.setItem(timestamp + "", curInputRef.value);
+      }
+    }
+  }, [inputRef]);
+
+  window.addEventListener("setItemEvent", function (value: any) {
+    console.log(value);
+  });
+
   return (
     <AppWrapper>
       <Header>
@@ -47,6 +63,8 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <input ref={inputRef} />
+        <button onClick={handleClick}>发送弹幕</button>
         <AppLink
           href="https://reactjs.org"
           target="_blank"
