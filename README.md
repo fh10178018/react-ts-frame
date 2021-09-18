@@ -1,4 +1,4 @@
-# 介绍
+## 介绍
 
 本项目是基于 React-TypeScript 的通用架子。
 
@@ -6,7 +6,7 @@
 
 当然随着技术的革新和个人能力的提升，作者也会不断总结和改善该通用架子。✨
 
-# 主要涉及的技术栈
+## 主要涉及的技术栈
 
 `styled-components`、`axios`、`React-Typescript`、`customize-cra`
 
@@ -23,6 +23,27 @@
 
 - 开发模式：`yarn build`
 - 生产模式：`yarn build:prod`
+
+## [tsconfig 相关配置说明 ➹](./docs/tsconfig.md)
+
+- 配置文件：`tsconfig.json`
+
+## [webpack 额外相关配置说明 ➹](./docs/config-overrides.md)
+
+- 配置文件：`config-overrides.js`
+
+## [开发环境 相关参数说明
+
+- [开发环境配置文件 ➹](./env)：`.env`
+- [生产环境配置文件 ➹](./env.prod)：`.env.prod`
+
+## [开发环境下 proxy 代理跨域 ➹](./src/setupProxy.js)
+
+- `/api` 后面拼接接口，一律走跨域请求
+
+## [前端性能检测 ➹](./src/reportWebVitals.ts)
+
+- `CLS`、 `FID`、 `FCP`、 `LCP`、 `TTFB`
 
 ## Git Hooks
 
