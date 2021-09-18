@@ -37,6 +37,7 @@ const AppLogo = styled.img`
 
 const AppLink = styled.a`
   color: #61dafb;
+  font-size: 20px;
 `;
 
 function App() {
