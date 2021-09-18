@@ -34,8 +34,8 @@
 
 ## [开发环境 相关参数说明
 
-- [开发环境配置文件 ➹](./env)：`.env`
-- [生产环境配置文件 ➹](./env.prod)：`.env.prod`
+- [开发环境配置文件 ➹](https://github.com/fh10178018/react-ts-frame/blob/dev/.env)：`.env`
+- [生产环境配置文件 ➹](https://github.com/fh10178018/react-ts-frame/blob/dev/.env.prod)：`.env.prod`
 
 ## [开发环境下 proxy 代理跨域 ➹](./src/setupProxy.js)
 
