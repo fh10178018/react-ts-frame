@@ -9,6 +9,7 @@ import {
   ThemeProps,
   ThemeProvider,
 } from "styled-components";
+import DINOCRAFT from "../fonts/DINOCRAFT.ttf";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,9 +23,14 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  @font-face {
+    font-family: "codeFont";  
+    src: url('${DINOCRAFT}') format("truetype");
+  }
+
   code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+    font-size: xx-large;
+    font-family: codeFont;
   }
 `;
 
