@@ -4,7 +4,9 @@ import App from "@/page/App";
 import reportWebVitals from "./reportWebVitals";
 import GlobalThemeProvider from "./provider/GlobalThemeProvider";
 import welcome from "@/utils/welcome";
+import { listenLocalStorage } from "@/utils/storageEmitter";
 
+listenLocalStorage();
 welcome();
 ReactDOM.render(
   <React.StrictMode>
