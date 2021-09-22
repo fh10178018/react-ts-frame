@@ -91,12 +91,65 @@ export function isEqual(obj1: any, obj2: any) {
   return true;
 }
 
-
-
 export function isValidKey(
   key: string | number | symbol,
   object: object
 ): key is keyof typeof object {
   if (key === undefined) return false;
   return key in object;
+}
+
+// 判断属性类型
+// Object.prototype.toString可以用object的toString判断
+// 从而避开如Array的toString方法
+// var obj = {a: 1};
+// obj.toString(); //"[object Object]"
+export function getType(obj: any) {
+  const toString = Object.prototype.toString;
+  const map = {
+    "[object Boolean]": "boolean",
+    "[object Number]": "number",
+    "[object String]": "string",
+    "[object Function]": "function",
+    "[object Array]": "array",
+    "[object Date]": "date",
+    "[object RegExp]": "regExp",
+    "[object Undefined]": "undefined",
+    "[object Null]": "null",
+    "[object Object]": "object",
+  };
+  const key = toString.call(obj);
+  if (obj instanceof Element) {
+    return "element";
+  }
+  return map[key as keyof typeof map];
+}
+
+// 递归方法处理deepClone，主要是处理数组和对象类型
+export function deepClone(data: any) {
+  const type = getType(data);
+  const stringMap = {
+    array: function () {
+      const obj: Array<any> = [];
+      for (let i = 0; i < data.length; i++) {
+        obj.push(deepClone(i));
+      }
+      return obj;
+    },
+    object: function () {
+      type ObjPropType = {
+        [key: string]: any;
+      };
+      const obj: ObjPropType = {};
+      for (let key in data) {
+        obj[key] = deepClone(data[key]);
+      }
+      return obj;
+    },
+  };
+  if (type && isValidKey(type, stringMap)) {
+    const func = stringMap[type as keyof typeof stringMap];
+    if (func) return func();
+  }
+  return data;
 }
